@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect , HttpResponse
 
-from .models import Curso
-from .forms import CursoFormulario
+from .models import Curso, Profesor
+from .forms import CursoFormulario, ProfesorFormulario
 
 # Create your views here.
 
@@ -52,3 +52,19 @@ def buscar(request):
 
     respuesta = 'No se encontro la camada solicitada'
     return HttpResponse(respuesta)
+
+
+def profesor_formulario(request):
+    if request.method == 'POST':
+        mi_formulario = ProfesorFormulario(request.POST)
+        if mi_formulario.is_valid():
+            informacion = mi_formulario.cleaned_data
+            profesor = Profesor(nombre=informacion['nombre'],
+                                apellido=informacion['apellido'],
+                                email=informacion['email'],
+                                profesion=informacion['profesion'])
+            profesor.save()
+            return redirect('inicio')
+    else:
+        mi_formulario = ProfesorFormulario()
+        return render(request, 'AppCoder/profesor-formulario.html', {'formulario_profesor': mi_formulario})
