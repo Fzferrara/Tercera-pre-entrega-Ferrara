@@ -1,7 +1,8 @@
-from django.shortcuts import render , redirect , HttpResponse
+from django.shortcuts import render , redirect 
+from django.http import HttpResponse
 
-from .models import Curso, Profesor
-from .forms import CursoFormulario, ProfesorFormulario
+from .models import Curso, Vendedor 
+from .forms import CursoFormulario, VendedorFormulario
 
 # Create your views here.
 
@@ -9,17 +10,17 @@ from .forms import CursoFormulario, ProfesorFormulario
 def inicio(request):
     return render(request, 'AppCoder/inicio.html')
 
-def cursos(request):
-    return render(request, 'AppCoder/cursos.html')
+def productos(request):
+    return render(request, 'AppCoder/productos.html')
 
-def profesores(request):
-    return render(request, 'AppCoder/profesores.html')
+def vendedores(request):
+    return render(request, 'AppCoder/vendedores.html')
 
-def estudiantes(request):
-    return render(request, 'AppCoder/estudiantes.html')
+def distribuidores(request):
+    return render(request, 'AppCoder/distribuidores.html')
 
-def entregables(request):
-    return render(request, 'AppCoder/entregables.html')
+def entregas(request):
+    return render(request, 'AppCoder/entregas.html')
 
 def curso_formulario(request):
     
@@ -54,17 +55,33 @@ def buscar(request):
     return HttpResponse(respuesta)
 
 
-def profesor_formulario(request):
+# def vendedorformulario(request):
+#     if request.method == 'POST':
+#         mi_formulario = VendedorFormulario(request.POST)
+#         if mi_formulario.is_valid():
+#             informacion = mi_formulario.cleaned_data
+#             vendedor = Profesor(nombre=informacion['nombre'],
+#                                 apellido=informacion['apellido'],
+#                                 email=informacion['email'],
+#                                 profesion=informacion['entrega'])
+#             vendedor.save()
+#             return redirect('inicio')
+#     else:
+#         mi_formulario = VendedorFormulario()
+        
+#     return render(request, 'AppCoder/vendedor-formulario.html', {'formulariovendedor': mi_formulario})
+
+def vendedor_formulario(request):
     if request.method == 'POST':
-        mi_formulario = ProfesorFormulario(request.POST)
+        mi_formulario = VendedorFormulario(request.POST)
         if mi_formulario.is_valid():
             informacion = mi_formulario.cleaned_data
-            profesor = Profesor(nombre=informacion['nombre'],
+            profesor = Vendedor(nombre=informacion['nombre'],
                                 apellido=informacion['apellido'],
                                 email=informacion['email'],
-                                profesion=informacion['profesion'])
+                                lugar=informacion['lugar'])
             profesor.save()
             return redirect('inicio')
     else:
-        mi_formulario = ProfesorFormulario()
-        return render(request, 'AppCoder/profesor-formulario.html', {'formulario_profesor': mi_formulario})
+        mi_formulario = VendedorFormulario()
+        return render(request, 'AppCoder/vendedor-formulario.html', {'formulario_vendedor': mi_formulario})

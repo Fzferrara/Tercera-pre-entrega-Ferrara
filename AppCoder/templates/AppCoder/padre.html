@@ -23,12 +23,13 @@
             <div class="container">
                 
                 <a class="navbar-brand" href="{% url 'inicio' %}">AppCoder</a>
-                <a href="{% url 'cursos' %}">Cursos</a>
-                <a href="{% url 'profesores' %}">Profesores</a>
-                <a href="{% url 'estudiantes' %}">Estudiantes</a>
-                <a href="{% url 'entregables' %}">Entregables</a>
-                <a class="btn btn-primary" href="{% url 'inicio' %}">Inicio</a>
-            </div>
+                <a href="{% url 'productos' %}">Productos en Venta</a>
+                <a href="{% url 'vendedores' %}">Vendedores</a>
+                <a href="{% url 'distribuidores' %}">Distribuidores</a>
+                <a href="{% url 'entregas' %}">Entregas</a>
+                {% comment %} <a href="{% url 'vendedor-formulario' %}">Formulario para vendedores</a> {% endcomment %}
+                <a class="btn btn-primary" href="{% url 'curso-formulario' %}">Registrate</a>
+            </div>          
         </nav>
         <!-- Masthead-->
         <header class="masthead">

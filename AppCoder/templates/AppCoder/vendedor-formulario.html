@@ -1,7 +1,7 @@
 {% extends 'AppCoder/padre.html' %}
 
 {% block titulo %}
-Formulario - Agregar profesor
+Formulario - Agregarte como vendedor
 {% endblock %}
 
 {% block contenido %}
@@ -10,15 +10,15 @@ Formulario - Agregar profesor
         <div class="row">
             <div class="col-lg-12">
 
-                {% if formulario_profesor.errors %}
+                {% if formulario_vendedor.errors %}
                 <p style="color: red;">Los datos están mal. Por favor reviselos.</p>
                 {% endif %}
 
-                <form action="{% url 'profesor-formulario' %}" method="POST">
+                <form action="{% url 'vendedor-formulario' %}" method= "POST">
                     {% csrf_token %}
                     
                     <table>
-                        {{ formulario_profesor.as_table }}
+                        {{ formulario_vendedor.as_table }}
                     </table>
 
                     <input type="submit" value="Enviar">
